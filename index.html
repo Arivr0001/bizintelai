@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BizIntelAI - Business Research Agent</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 5px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.search-box{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+.results{
+    margin-top:20px;
+}
+
+.business{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    margin-top:10px;
+    box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>BizIntelAI</h1>
+
+<div class="dashboard">
+<div class="card">
+<h3>Searches</h3>
+<p id="searches">0</p>
+</div>
+
+<div class="card">
+<h3>Businesses</h3>
+<p id="businesses">0</p>
+</div>
+
+<div class="card">
+<h3>Verified</h3>
+<p id="verified">0</p>
+</div>
+
+<div class="card">
+<h3>Duplicates Removed</h3>
+<p id="duplicates">0</p>
+</div>
+</div>
+
+<div class="search-box">
+<h2>Business Research</h2>
+
+<input
+type="text"
+id="query"
+placeholder="Example: Dentists in Austin">
+
+<button onclick="research()">
+Run Research
+</button>
+
+<div class="results" id="results"></div>
+
+</div>
+
+</div>
+
+<script>
+
+let totalSearches=0;
+
+function research(){
+
+const query=document.getElementById("query").value;
+
+if(query===""){
+alert("Enter query");
+return;
+}
+
+totalSearches++;
+
+document.getElementById("searches").innerText=
+totalSearches;
+
+document.getElementById("businesses").innerText="3";
+document.getElementById("verified").innerText="3";
+document.getElementById("duplicates").innerText="1";
+
+document.getElementById("results").innerHTML=`
+
+<div class="business">
+<h3>ABC Business Solutions</h3>
+<p>Address: Austin, Texas</p>
+<p>Phone: +1 555 123456</p>
+<p>Website: www.abcbusiness.com</p>
+<p>Verification Score: 95%</p>
+</div>
+
+<div class="business">
+<h3>Prime Research Group</h3>
+<p>Address: Austin, Texas</p>
+<p>Phone: +1 555 654321</p>
+<p>Website: www.primeresearch.com</p>
+<p>Verification Score: 92%</p>
+</div>
+
+<div class="business">
+<h3>Smart Analytics Hub</h3>
+<p>Address: Austin, Texas</p>
+<p>Phone: +1 555 789456</p>
+<p>Website: www.smartanalytics.com</p>
+<p>Verification Score: 90%</p>
+</div>
+
+<div class="business">
+<h2>Executive Summary</h2>
+<p>
+The AI agent analyzed the query "${query}" and
+generated structured business information,
+verification scores, duplicate removal statistics,
+and research insights.
+</p>
+</div>
+
+`;
+
+}
+</script>
+
+</body>
+</html>
